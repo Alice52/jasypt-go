@@ -9,4 +9,4 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       # conventional style
-      - uses: ahmadnassri/action-commit-lint@v2.1.16
+      - uses: ahmadnassri/action-commit-lint@v2.1.17
