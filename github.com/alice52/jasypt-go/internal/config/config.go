@@ -28,7 +28,6 @@ func GetPwd() string {
 }
 
 func New() Config {
-
 	return NewConfig(
 		SetPrefix(constant.Prefix),
 		SetSuffix(constant.Suffix),

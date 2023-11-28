@@ -25,7 +25,6 @@ func NewPBEWithAES(conf config.Config) *PBEWithAES {
 }
 
 func (c *PBEWithAES) Encrypt(message string) (string, error) {
-
 	saltGenerator, ivGenerator, password := c.SaltGenerator, c.IvGenerator, c.Password
 	_, _, koi, ab := c.Prefix, c.Suffix, c.keyObtainIterations, c.algorithmBlockSize
 

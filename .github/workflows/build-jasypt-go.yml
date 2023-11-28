@@ -39,8 +39,8 @@ jobs:
         run: |
           PROJECT_NAME=jasypt-go
           cd $PROJECT_HOME/$PROJECT_PREFIX/$PROJECT_NAME
-          go build ./... -v
-          go test ./... -v
+          go build ./...
+          go test ./...
 
 #      - name: Upload Artifact
 #        uses: actions/upload-artifact@v3

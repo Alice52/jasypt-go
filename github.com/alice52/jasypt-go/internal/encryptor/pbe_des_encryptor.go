@@ -31,10 +31,6 @@ func (c *PBEWithDES) Encrypt(message string) (string, error) {
 	if err != nil {
 		return "", err
 	}
-	iv, err := ivGenerator.GenerateIv(ab)
-	if err != nil {
-		return "", err
-	}
 
 	dk, iv := util.GetMd5DerivedKey(password, salt, koi)
 	encText, err := util.DesEncrypt([]byte(message), dk, iv)

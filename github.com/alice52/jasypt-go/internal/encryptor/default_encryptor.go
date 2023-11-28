@@ -65,12 +65,11 @@ func (c *DefaultAES) Decrypt(message string) (string, error) {
 }
 
 func buildCipher(pwd string) (cipher.Block, error) {
-
 	if len(pwd) == 0 {
 		pwd = config.GetPwd()
 	}
 
-	sum := md5.Sum([]byte(pwd))
+	sum := md5.Sum([]byte(pwd)) //nolint:gosec
 
 	return aes.NewCipher(sum[:])
 }

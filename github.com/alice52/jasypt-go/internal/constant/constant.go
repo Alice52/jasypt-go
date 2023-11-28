@@ -2,7 +2,7 @@ package constant
 
 const (
 	JasyptKey = "JASYPT_ENCRYPTOR_PASSWORD"
-	JasyptPwd = "64179d22-8dc9-11ee-b9d1-0242ac120002"
+	JasyptPwd = "64179d22-8dc9-11ee-b9d1-0242ac120002" //nolint:gosec
 	Prefix    = "ENC("
 	Suffix    = ")"
 	Pattern   = `ENC\(([^)]+)\)` //  match[1]
