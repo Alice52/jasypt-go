@@ -20,6 +20,15 @@ func NewDefaultAES(conf config.Config) *DefaultAES {
 	}
 }
 
+func (c *DefaultAES) EncryptWrapper(message string) (string, error) {
+	encrypted, err := c.Encrypt(message)
+	if err != nil {
+		return "", err
+	}
+
+	return c.Prefix + encrypted + c.Suffix, nil
+}
+
 func (c *DefaultAES) Encrypt(message string) (string, error) {
 	block, err := buildCipher(c.Password)
 	if err != nil {
@@ -40,8 +49,17 @@ func (c *DefaultAES) Encrypt(message string) (string, error) {
 	return base64.StdEncoding.EncodeToString(seal), nil
 }
 
-func (c *DefaultAES) Decrypt(message string) (string, error) {
+func (c *DefaultAES) DecryptWrapper(message string) (string, error) {
+	if c.NeedDecrypt(message) {
+		s := len(c.Prefix)
+		e := len(message) - len(c.Suffix)
+		return c.Decrypt(message[s:e])
+	}
 
+	return message, nil
+}
+
+func (c *DefaultAES) Decrypt(message string) (string, error) {
 	data, err := base64.StdEncoding.DecodeString(message)
 	if err != nil {
 		return "", err

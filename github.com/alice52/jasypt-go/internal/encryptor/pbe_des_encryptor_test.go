@@ -14,29 +14,55 @@ func init() {
 	os.Setenv(constant.JasyptKey, constant.JasyptPwd)
 }
 
-func TestDesEncryptor(t *testing.T) {
-
+func TestDesEncryptorWrapper(t *testing.T) {
 	encryptor := NewPBEWithDES(config.New())
 
-	encrypt, err := encryptor.Encrypt(desMsg)
+	encrypt, err := encryptor.EncryptWrapper(desMsg)
 	if err != nil {
-		return
+		panic(err)
 	}
 
-	decrypt, err := encryptor.Decrypt(encrypt)
+	decrypt, err := encryptor.DecryptWrapper(encrypt)
 	if err != nil {
-		return
+		panic(err)
 	}
 
 	assert.Equal(t, decrypt, desMsg)
 }
 
-func TestDesDecrypt(t *testing.T) {
+func TestDesEncryptor(t *testing.T) {
 	encryptor := NewPBEWithDES(config.New())
 
-	decrypt, err := encryptor.Decrypt("uDlhRqsjSMxjuoXqHOWfRXruwO8F4eGcN4ua47fgUAw=")
+	encrypt, err := encryptor.Encrypt(desMsg)
 	if err != nil {
-		return
+		panic(err)
+	}
+
+	decrypt, err := encryptor.Decrypt(encrypt)
+	if err != nil {
+		panic(err)
+	}
+
+	assert.Equal(t, decrypt, desMsg)
+}
+
+func TestDesDecryptWrapper(t *testing.T) {
+	encryptor := NewPBEWithDES(config.New())
+	decrypt, err := encryptor.DecryptWrapper("ENC(PvUmKDs8QgOWiFpM6hzck84WZRMf7bcHrp2IQdm71xk=)")
+
+	if err != nil {
+		panic(err)
+	}
+
+	assert.Equal(t, decrypt, defaultMsg)
+}
+
+func TestDesDecrypt(t *testing.T) {
+	encryptor := NewPBEWithDES(config.New())
+	decrypt, err := encryptor.Decrypt("uDlhRqsjSMxjuoXqHOWfRXruwO8F4eGcN4ua47fgUAw=")
+
+	if err != nil {
+		panic(err)
 	}
 
 	assert.Equal(t, decrypt, defaultMsg)

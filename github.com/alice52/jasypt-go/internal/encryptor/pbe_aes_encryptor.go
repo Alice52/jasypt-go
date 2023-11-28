@@ -24,6 +24,15 @@ func NewPBEWithAES(conf config.Config) *PBEWithAES {
 	}
 }
 
+func (c *PBEWithAES) EncryptWrapper(message string) (string, error) {
+	encrypted, err := c.Encrypt(message)
+	if err != nil {
+		return "", err
+	}
+
+	return c.Prefix + encrypted + c.Suffix, nil
+}
+
 func (c *PBEWithAES) Encrypt(message string) (string, error) {
 	saltGenerator, ivGenerator, password := c.SaltGenerator, c.IvGenerator, c.Password
 	_, _, koi, ab := c.Prefix, c.Suffix, c.keyObtainIterations, c.algorithmBlockSize
@@ -51,6 +60,16 @@ func (c *PBEWithAES) Encrypt(message string) (string, error) {
 	}
 
 	return base64.StdEncoding.EncodeToString(result), nil
+}
+
+func (c *PBEWithAES) DecryptWrapper(message string) (string, error) {
+	if c.NeedDecrypt(message) {
+		s := len(c.Prefix)
+		e := len(message) - len(c.Suffix)
+		return c.Decrypt(message[s:e])
+	}
+
+	return message, nil
 }
 
 func (c *PBEWithAES) Decrypt(message string) (string, error) {

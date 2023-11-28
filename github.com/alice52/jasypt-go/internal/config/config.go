@@ -5,6 +5,7 @@ import (
 	"github.com/alice52/jasypt-go/internal/iv"
 	"github.com/alice52/jasypt-go/internal/salt"
 	"os"
+	"strings"
 )
 
 type Config struct {
@@ -14,6 +15,14 @@ type Config struct {
 	Password      string
 	SaltGenerator salt.Generator
 	IvGenerator   iv.Generator
+}
+
+func (c *Config) NeedDecrypt(msg string) bool {
+	if len(msg) == 0 {
+		return false
+	}
+
+	return strings.HasPrefix(msg, c.Prefix) && strings.HasSuffix(msg, c.Suffix)
 }
 
 type Ops func(*Config)

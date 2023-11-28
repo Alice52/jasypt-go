@@ -1,4 +1,4 @@
-package jasypt_go
+package jasypt
 
 import (
 	"github.com/alice52/jasypt-go/internal/config"

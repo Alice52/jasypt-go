@@ -22,6 +22,15 @@ func NewPBEWithDES(conf config.Config) *PBEWithDES {
 	}
 }
 
+func (c *PBEWithDES) EncryptWrapper(message string) (string, error) {
+	encrypted, err := c.Encrypt(message)
+	if err != nil {
+		return "", err
+	}
+
+	return c.Prefix + encrypted + c.Suffix, nil
+}
+
 func (c *PBEWithDES) Encrypt(message string) (string, error) {
 	saltGenerator, ivGenerator, password := c.SaltGenerator, c.IvGenerator, c.Password
 	_, _, koi, ab := c.Prefix, c.Suffix, c.keyObtainIterations, c.algorithmBlockSize
@@ -46,6 +55,16 @@ func (c *PBEWithDES) Encrypt(message string) (string, error) {
 	}
 
 	return base64.StdEncoding.EncodeToString(result), nil
+}
+
+func (c *PBEWithDES) DecryptWrapper(message string) (string, error) {
+	if c.NeedDecrypt(message) {
+		s := len(c.Prefix)
+		e := len(message) - len(c.Suffix)
+		return c.Decrypt(message[s:e])
+	}
+
+	return message, nil
 }
 
 func (c *PBEWithDES) Decrypt(message string) (string, error) {
