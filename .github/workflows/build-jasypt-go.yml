@@ -39,11 +39,12 @@ jobs:
         run: |
           PROJECT_NAME=jasypt-go
           cd $PROJECT_HOME/$PROJECT_PREFIX/$PROJECT_NAME
-          go build -o Jasypt-Go
+          go build ./... -v
+          go test ./... -v
 
-      - name: Upload Artifact
-        uses: actions/upload-artifact@v3
-        with:
-          name: ${{ matrix.os }}-${{ matrix.go }}-Jasypt-Go
-          path: ${{ github.workspace }}/**/Jasypt-Go
-          retention-days: 7
+#      - name: Upload Artifact
+#        uses: actions/upload-artifact@v3
+#        with:
+#          name: ${{ matrix.os }}-${{ matrix.go }}-Jasypt-Go
+#          path: ${{ github.workspace }}/**/Jasypt-Go
+#          retention-days: 1
