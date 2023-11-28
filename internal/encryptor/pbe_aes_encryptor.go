@@ -3,7 +3,7 @@ package encryptor
 import (
 	"crypto/sha512"
 	"encoding/base64"
-	"github.com/alice52/jasypt-go/internal/config"
+	"github.com/alice52/jasypt-go/config"
 	"github.com/alice52/jasypt-go/util"
 	"golang.org/x/crypto/pbkdf2"
 	"regexp"

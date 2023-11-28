@@ -1,8 +1,8 @@
 package jasypt
 
 import (
-	"github.com/alice52/jasypt-go/internal/config"
-	"github.com/alice52/jasypt-go/internal/constant"
+	"github.com/alice52/jasypt-go/config"
+	"github.com/alice52/jasypt-go/constant"
 	"github.com/alice52/jasypt-go/internal/iv"
 	"github.com/alice52/jasypt-go/internal/salt"
 	"os"

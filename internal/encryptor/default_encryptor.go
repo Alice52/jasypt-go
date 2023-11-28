@@ -6,7 +6,7 @@ import (
 	"crypto/md5"
 	"crypto/rand"
 	"encoding/base64"
-	"github.com/alice52/jasypt-go/internal/config"
+	"github.com/alice52/jasypt-go/config"
 	"io"
 )
 

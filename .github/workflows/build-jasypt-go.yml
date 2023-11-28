@@ -38,7 +38,7 @@ jobs:
       - name: Build Jasypt-Go Package
         run: |
           PROJECT_NAME=jasypt-go
-          cd $PROJECT_HOME/$PROJECT_PREFIX/$PROJECT_NAME
+          # cd $PROJECT_HOME/$PROJECT_PREFIX/$PROJECT_NAME
           go build ./...
           go test ./...
 

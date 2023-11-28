@@ -2,7 +2,7 @@ package encryptor
 
 import (
 	"encoding/base64"
-	"github.com/alice52/jasypt-go/internal/config"
+	"github.com/alice52/jasypt-go/config"
 	"github.com/alice52/jasypt-go/util"
 	"regexp"
 )
