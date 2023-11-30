@@ -3,7 +3,7 @@ package jasypt
 import (
 	"github.com/alice52/jasypt-go/config"
 	"github.com/alice52/jasypt-go/constant"
-	"github.com/alice52/jasypt-go/internal/encryptor"
+	"github.com/alice52/jasypt-go/crypt/encryptor"
 )
 
 func New() encryptor.Encryptor {

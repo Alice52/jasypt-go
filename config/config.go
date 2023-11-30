@@ -2,8 +2,8 @@ package config
 
 import (
 	"github.com/alice52/jasypt-go/constant"
-	"github.com/alice52/jasypt-go/internal/iv"
-	"github.com/alice52/jasypt-go/internal/salt"
+	"github.com/alice52/jasypt-go/crypt/iv"
+	"github.com/alice52/jasypt-go/crypt/salt"
 	"os"
 	"strings"
 )
@@ -18,11 +18,16 @@ type Config struct {
 }
 
 func (c *Config) NeedDecrypt(msg string) bool {
+
+	return NeedDecrypt(msg, c.Prefix, c.Suffix)
+}
+
+func NeedDecrypt(msg, prefix, suffix string) bool {
 	if len(msg) == 0 {
 		return false
 	}
 
-	return strings.HasPrefix(msg, c.Prefix) && strings.HasSuffix(msg, c.Suffix)
+	return strings.HasPrefix(msg, prefix) && strings.HasSuffix(msg, suffix)
 }
 
 type Ops func(*Config)

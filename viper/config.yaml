@@ -1,0 +1,7 @@
+system:
+  env: local
+  db-type: ENC(KNHhQH8ZnZOEAt1Zj5RPgaD/AM6cJkuQ9u6yf0/usnUDUmOYm2dk+SdNrjTQ36Y0)
+  addr: ENC(WNZWKucdMk0v0E+gQVP8ziKNOFlSuoh2dWXP/elchy/TWeUCcge9PCFXNK+6bgEm)
+  use-mongo: ENC(GDzYtVPxSL5F8OPcpeU4AgBw2ePH/K5o8oQezCKhp4DUn/qNfSrImXMcicO0rNnb)
+  use-redis: ENC(w5vKebaFKcnyZu5xBTIIPByGtUtjeGrEHTzANf/xgbcgIAdrxxQSoARVmvU8qFcz)
+

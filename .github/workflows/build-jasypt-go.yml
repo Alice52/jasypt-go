@@ -3,13 +3,13 @@ name: Build Jasypt-Go Package
 on:
   workflow_dispatch:
   release:
-    types: [released]
+    types: [ released ]
   push:
     branches:
       - master
     paths:
-      - '**/github.com/alice52/jasypt-go/**'
-      - '.github/workflows/build-jasypt-go.yml'
+      - '**/github.com/alice52/viper-go/**'
+      - '.github/workflows/build-viper-go.yml'
   pull_request:
 
 jobs:
@@ -17,8 +17,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: ['ubuntu-latest', 'macOS-latest']
-        go: ['1.18.x', '1.19.x', '1.20.x', '1.21.x']
+        os: [ 'ubuntu-latest', 'macOS-latest' ]
+        go: [ '1.18.x', '1.19.x', '1.20.x', '1.21.x' ]
     runs-on: ${{ matrix.os }}
     if: "!contains(github.event.head_commit.message, 'ci skip')"
     env:

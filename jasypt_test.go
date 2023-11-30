@@ -3,8 +3,8 @@ package jasypt
 import (
 	"github.com/alice52/jasypt-go/config"
 	"github.com/alice52/jasypt-go/constant"
-	"github.com/alice52/jasypt-go/internal/iv"
-	"github.com/alice52/jasypt-go/internal/salt"
+	"github.com/alice52/jasypt-go/crypt/iv"
+	"github.com/alice52/jasypt-go/crypt/salt"
 	"os"
 	"testing"
 )

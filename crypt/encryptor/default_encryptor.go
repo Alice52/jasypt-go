@@ -20,6 +20,10 @@ func NewDefaultAES(conf config.Config) *DefaultAES {
 	}
 }
 
+func (c *DefaultAES) GetConfig() config.Config {
+	return c.Config
+}
+
 func (c *DefaultAES) EncryptWrapper(message string) (string, error) {
 	encrypted, err := c.Encrypt(message)
 	if err != nil {
