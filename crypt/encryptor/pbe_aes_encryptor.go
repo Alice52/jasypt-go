@@ -28,7 +28,9 @@ func (c *PBEWithAES) GetConfig() config.Config {
 	return c.Config
 }
 
-func (c *PBEWithAES) EncryptWrapper(message string) (string, error) {
+func (c *PBEWithAES) EncryptWrapper(message string) (a string, err error) {
+	RecoveryPanicAsError(err)
+
 	encrypted, err := c.Encrypt(message)
 	if err != nil {
 		return "", err
@@ -37,7 +39,9 @@ func (c *PBEWithAES) EncryptWrapper(message string) (string, error) {
 	return c.Prefix + encrypted + c.Suffix, nil
 }
 
-func (c *PBEWithAES) Encrypt(message string) (string, error) {
+func (c *PBEWithAES) Encrypt(message string) (a string, err error) {
+	RecoveryPanicAsError(err)
+
 	saltGenerator, ivGenerator, password := c.SaltGenerator, c.IvGenerator, c.Password
 	_, _, koi, ab := c.Prefix, c.Suffix, c.keyObtainIterations, c.algorithmBlockSize
 
@@ -66,7 +70,9 @@ func (c *PBEWithAES) Encrypt(message string) (string, error) {
 	return base64.StdEncoding.EncodeToString(result), nil
 }
 
-func (c *PBEWithAES) DecryptWrapper(message string) (string, error) {
+func (c *PBEWithAES) DecryptWrapper(message string) (a string, err error) {
+	RecoveryPanicAsError(err)
+
 	if c.NeedDecrypt(message) {
 		s := len(c.Prefix)
 		e := len(message) - len(c.Suffix)
@@ -76,7 +82,9 @@ func (c *PBEWithAES) DecryptWrapper(message string) (string, error) {
 	return message, nil
 }
 
-func (c *PBEWithAES) Decrypt(message string) (string, error) {
+func (c *PBEWithAES) Decrypt(message string) (a string, err error) {
+	RecoveryPanicAsError(err)
+
 	saltGenerator, ivGenerator, password := c.SaltGenerator, c.IvGenerator, c.Password
 	_, _, koi, ab := c.Prefix, c.Suffix, c.keyObtainIterations, c.algorithmBlockSize
 

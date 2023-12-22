@@ -1,6 +1,10 @@
 package encryptor
 
-import "github.com/alice52/jasypt-go/config"
+import (
+	"errors"
+	"fmt"
+	"github.com/alice52/jasypt-go/config"
+)
 
 type Encryptor interface {
 	GetConfig() config.Config
@@ -9,4 +13,12 @@ type Encryptor interface {
 
 	EncryptWrapper(message string) (string, error)
 	DecryptWrapper(message string) (string, error)
+}
+
+func RecoveryPanicAsError(err error) {
+	defer func() {
+		if r := recover(); r != nil {
+			err = errors.New(fmt.Sprintf("recovered from panic: %v", r))
+		}
+	}()
 }

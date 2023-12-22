@@ -6,7 +6,8 @@ import (
 	"github.com/spf13/viper"
 )
 
-func Unmarshal(v *viper.Viper, etor encryptor.Encryptor, rawVal any, opts ...viper.DecoderConfigOption) error {
+func Unmarshal(v *viper.Viper, etor encryptor.Encryptor, rawVal any, opts ...viper.DecoderConfigOption) (err error) {
+	encryptor.RecoveryPanicAsError(err)
 
 	jc := etor.GetConfig()
 	for _, k := range v.AllKeys() {
