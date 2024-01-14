@@ -25,7 +25,7 @@ func (c *DefaultAES) GetConfig() config.Config {
 }
 
 func (c *DefaultAES) EncryptWrapper(message string) (a string, err error) {
-	RecoveryPanicAsError(err)
+	defer RecoveryPanicAsError()(err)
 	encrypted, err := c.Encrypt(message)
 	if err != nil {
 		return "", err
@@ -35,7 +35,7 @@ func (c *DefaultAES) EncryptWrapper(message string) (a string, err error) {
 }
 
 func (c *DefaultAES) Encrypt(message string) (a string, err error) {
-	RecoveryPanicAsError(err)
+	defer RecoveryPanicAsError()(err)
 
 	block, err := buildCipher(c.Password)
 	if err != nil {
@@ -57,7 +57,7 @@ func (c *DefaultAES) Encrypt(message string) (a string, err error) {
 }
 
 func (c *DefaultAES) DecryptWrapper(message string) (a string, err error) {
-	RecoveryPanicAsError(err)
+	defer RecoveryPanicAsError()(err)
 	if c.NeedDecrypt(message) {
 		s := len(c.Prefix)
 		e := len(message) - len(c.Suffix)
@@ -68,7 +68,7 @@ func (c *DefaultAES) DecryptWrapper(message string) (a string, err error) {
 }
 
 func (c *DefaultAES) Decrypt(message string) (a string, err error) {
-	RecoveryPanicAsError(err)
+	defer RecoveryPanicAsError()(err)
 
 	data, err := base64.StdEncoding.DecodeString(message)
 	if err != nil {

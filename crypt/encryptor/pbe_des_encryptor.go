@@ -27,7 +27,7 @@ func NewPBEWithDES(conf config.Config) *PBEWithDES {
 }
 
 func (c *PBEWithDES) EncryptWrapper(message string) (a string, err error) {
-	RecoveryPanicAsError(err)
+	defer RecoveryPanicAsError()(err)
 
 	encrypted, err := c.Encrypt(message)
 	if err != nil {
@@ -38,7 +38,7 @@ func (c *PBEWithDES) EncryptWrapper(message string) (a string, err error) {
 }
 
 func (c *PBEWithDES) Encrypt(message string) (a string, err error) {
-	RecoveryPanicAsError(err)
+	defer RecoveryPanicAsError()(err)
 
 	saltGenerator, ivGenerator, password := c.SaltGenerator, c.IvGenerator, c.Password
 	_, _, koi, ab := c.Prefix, c.Suffix, c.keyObtainIterations, c.algorithmBlockSize
@@ -66,7 +66,7 @@ func (c *PBEWithDES) Encrypt(message string) (a string, err error) {
 }
 
 func (c *PBEWithDES) DecryptWrapper(message string) (a string, err error) {
-	RecoveryPanicAsError(err)
+	defer RecoveryPanicAsError()(err)
 
 	if c.NeedDecrypt(message) {
 		s := len(c.Prefix)
@@ -78,7 +78,7 @@ func (c *PBEWithDES) DecryptWrapper(message string) (a string, err error) {
 }
 
 func (c *PBEWithDES) Decrypt(message string) (a string, err error) {
-	RecoveryPanicAsError(err)
+	defer RecoveryPanicAsError()(err)
 
 	saltGenerator, ivGenerator, password := c.SaltGenerator, c.IvGenerator, c.Password
 	_, _, koi, ab := c.Prefix, c.Suffix, c.keyObtainIterations, c.algorithmBlockSize

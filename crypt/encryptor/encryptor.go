@@ -15,10 +15,10 @@ type Encryptor interface {
 	DecryptWrapper(message string) (string, error)
 }
 
-func RecoveryPanicAsError(err error) {
-	defer func() {
+func RecoveryPanicAsError() func(err error) {
+	return func(err error) {
 		if r := recover(); r != nil {
 			err = errors.New(fmt.Sprintf("recovered from panic: %v", r))
 		}
-	}()
+	}
 }
