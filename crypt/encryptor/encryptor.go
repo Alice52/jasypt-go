@@ -18,7 +18,9 @@ type Encryptor interface {
 func RecoveryPanicAsError() func(err error) {
 	return func(err error) {
 		if r := recover(); r != nil {
-			err = errors.New(fmt.Sprintf("recovered from panic: %v", r))
+			errMsg := fmt.Sprintf("recovered from panic: %v", r)
+			fmt.Println(errMsg)
+			err = errors.New(errMsg)
 		}
 	}
 }
