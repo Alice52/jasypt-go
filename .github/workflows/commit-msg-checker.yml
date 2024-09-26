@@ -6,7 +6,7 @@ on: [ push, pull_request ]
 
 jobs:
   commit-lint:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     steps:
       # conventional style
       - uses: ahmadnassri/action-commit-lint@v2.1.17
