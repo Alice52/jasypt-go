@@ -5,7 +5,7 @@ go 1.20
 require (
 	github.com/spf13/cast v1.7.1
 	github.com/spf13/viper v1.17.0
-	github.com/stretchr/testify v1.8.4
+	github.com/stretchr/testify v1.10.0
 	golang.org/x/crypto v0.31.0
 )
 
