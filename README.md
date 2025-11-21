@@ -1,5 +1,9 @@
 ## jasypt-go
 
+```go
+go get github.com/alice52/jasypt-go v1.0.7
+```
+
 ## reference
 
 1. https://github.com/ulisesbocchio/jasypt-spring-boot
