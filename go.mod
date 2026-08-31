@@ -1,9 +1,9 @@
 module github.com/alice52/jasypt-go
 
-go 1.20
+go 1.21.0
 
 require (
-	github.com/spf13/cast v1.7.1
+	github.com/spf13/cast v1.10.0
 	github.com/spf13/viper v1.19.0
 	github.com/stretchr/testify v1.10.0
 	golang.org/x/crypto v0.32.0
